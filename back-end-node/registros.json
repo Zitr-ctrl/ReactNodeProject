@@ -1,0 +1,16 @@
+[
+  {
+    "nombre": "David Josue Ortíz Ochoa",
+    "email": "ajosueramos@gmail.com",
+    "descripcion": "Esta es una publicación",
+    "fecha": "2025-05-12",
+    "categoria": "Tecnología"
+  },
+  {
+    "nombre": "Jennifer Lopez",
+    "email": "jenniferlopez@gmail.com",
+    "descripcion": "Hola Mundo",
+    "fecha": "2025-05-12",
+    "categoria": "Educación"
+  }
+]
