@@ -39,6 +39,44 @@ app.post('/registros', (req, res) => {
   }
 });
 
+// DELETE /registros/:index
+app.delete('/registros/:index', (req, res) => {
+  try {
+    const index = parseInt(req.params.index);
+    const raw = fs.readFileSync(FILE_PATH);
+    const data = JSON.parse(raw);
+    if (index < 0 || index >= data.length) {
+      return res.status(404).json({ error: 'Índice no válido' });
+    }
+    data.splice(index, 1);
+    fs.writeFileSync(FILE_PATH, JSON.stringify(data, null, 2));
+    res.json({ mensaje: 'Registro eliminado' });
+  } catch (err) {
+    console.error('Error al eliminar registro:', err.message);
+    res.status(500).json({ error: 'Error al eliminar registro' });
+  }
+});
+
+// PUT /registros/:index
+app.put('/registros/:index', (req, res) => {
+  try {
+    const index = parseInt(req.params.index);
+    const updatedRecord = req.body;
+    const raw = fs.readFileSync(FILE_PATH);
+    const data = JSON.parse(raw);
+    if (index < 0 || index >= data.length) {
+      return res.status(404).json({ error: 'Índice no válido' });
+    }
+    data[index] = updatedRecord;
+    fs.writeFileSync(FILE_PATH, JSON.stringify(data, null, 2));
+    res.json({ mensaje: 'Registro actualizado', registro: updatedRecord });
+  } catch (err) {
+    console.error('Error al actualizar registro:', err.message);
+    res.status(500).json({ error: 'Error al actualizar registro' });
+  }
+});
+
+
 app.listen(PORT, () => {
   console.log(`Servidor en http://localhost:${PORT}`);
 });

@@ -9,8 +9,15 @@
   {
     "nombre": "Jennifer Lopez",
     "email": "jenniferlopez@gmail.com",
-    "descripcion": "Hola Mundo",
+    "descripcion": "Te amo josue",
     "fecha": "2025-05-12",
     "categoria": "Educación"
+  },
+  {
+    "nombre": "Erick Ortíz",
+    "email": "erickortiz@gmail.com",
+    "descripcion": "Roblox es genial",
+    "fecha": "2025-05-14",
+    "categoria": "Tecnología"
   }
 ]
