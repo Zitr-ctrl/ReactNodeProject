@@ -5,9 +5,9 @@ function Registro() {
   const [form, setForm] = useState({
     nombre: "",
     email: "",
-    descripcion: "",
+    actividad: "",
     fecha: "",
-    categoria: "",
+    horas: 0,
   });
 
   const handleChange = (e) => {
@@ -19,12 +19,12 @@ function Registro() {
     if (
       form.nombre &&
       form.email &&
-      form.descripcion &&
+      form.actividad &&
       form.fecha &&
-      form.categoria
+      form.horas
     ) {
       await axios.post("http://localhost:3001/registros", form);
-      alert("Registro exitoso");
+      alert("Voluntariado registrado con éxito");
     } else {
       alert("Por favor completa todos los campos");
     }
@@ -34,19 +34,19 @@ function Registro() {
     <form onSubmit={handleSubmit} className="registro-form">
       <input name="nombre" placeholder="Nombre" onChange={handleChange} />
       <input name="email" placeholder="Email" onChange={handleChange} />
-      <textarea
-        name="descripcion"
-        placeholder="Descripción"
+      <input
+        name="actividad"
+        placeholder="Actividad de voluntariado"
         onChange={handleChange}
-      ></textarea>
+      />
       <input type="date" name="fecha" onChange={handleChange} />
-      <select name="categoria" onChange={handleChange}>
-        <option value="">Selecciona categoría</option>
-        <option value="Tecnología">Tecnología</option>
-        <option value="Educación">Educación</option>
-        <option value="Salud">Salud</option>
-      </select>
-      <button type="submit">Registrar</button>
+      <input
+        type="number"
+        name="horas"
+        placeholder="Horas dedicadas"
+        onChange={handleChange}
+      />
+      <button type="submit">Registrar Voluntariado</button>
     </form>
   );
 }

@@ -2,22 +2,22 @@
   {
     "nombre": "David Josue Ortíz Ochoa",
     "email": "ajosueramos@gmail.com",
-    "descripcion": "Esta es una publicación",
+    "actividad": "Recogida de basura en el parque",
     "fecha": "2025-05-12",
-    "categoria": "Tecnología"
+    "horas": 4
   },
   {
     "nombre": "Jennifer Lopez",
     "email": "jenniferlopez@gmail.com",
-    "descripcion": "Te amo josue",
+    "actividad": "Taller de educación para niños",
     "fecha": "2025-05-12",
-    "categoria": "Educación"
+    "horas": 3
   },
   {
     "nombre": "Erick Ortíz",
     "email": "erickortiz@gmail.com",
-    "descripcion": "Roblox es genial",
+    "actividad": "Reforestación en la montaña",
     "fecha": "2025-05-14",
-    "categoria": "Tecnología"
+    "horas": 5
   }
 ]

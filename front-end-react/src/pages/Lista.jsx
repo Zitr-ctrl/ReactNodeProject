@@ -2,131 +2,117 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 
 function Lista() {
-  const [publicaciones, setPublicaciones] = useState([]);
-  const [editIndex, setEditIndex] = useState(null);
+  const [voluntariados, setVoluntariados] = useState([]);
+  const [editIndex, setEditIndex] = useState(null);  // Estado para manejar la edición
   const [editForm, setEditForm] = useState({
     nombre: "",
     email: "",
-    descripcion: "",
+    actividad: "",
     fecha: "",
-    categoria: "",
+    horas: 0,
   });
 
-  // Carga las publicaciones desde el backend
   useEffect(() => {
-    cargarPublicaciones();
+    cargarVoluntariados();
   }, []);
 
-  const cargarPublicaciones = () => {
+  const cargarVoluntariados = () => {
     axios
       .get("http://localhost:3001/registros")
-      .then((res) => setPublicaciones(res.data))
+      .then((res) => setVoluntariados(res.data))
       .catch((err) => console.error(err));
   };
 
-  // Elimina una publicación por índice
-  const eliminarPublicacion = async (index) => {
+  const eliminarVoluntariado = async (index) => {
     try {
       await axios.delete(`http://localhost:3001/registros/${index}`);
-      cargarPublicaciones();
+      cargarVoluntariados();
     } catch (error) {
       console.error("Error al eliminar:", error);
     }
   };
 
-  // Comienza la edición cargando los datos en el formulario
   const comenzarEdicion = (index) => {
-    const pub = publicaciones[index];
-    setEditIndex(index);
-    setEditForm({ ...pub });
+    const vol = voluntariados[index];
+    setEditIndex(index);  // Establecer el índice del registro que se está editando
+    setEditForm({ ...vol });  // Llenar el formulario con los datos del voluntariado
   };
 
-  // Maneja cambios en el formulario de edición
   const handleEditChange = (e) => {
     setEditForm({ ...editForm, [e.target.name]: e.target.value });
   };
 
-  // Guarda los cambios editados enviando PUT al backend
   const guardarEdicion = async () => {
     try {
       await axios.put(`http://localhost:3001/registros/${editIndex}`, editForm);
-      setEditIndex(null);
-      cargarPublicaciones();
+      setEditIndex(null);  // Restablecer el estado editIndex después de guardar
+      cargarVoluntariados();  // Recargar los voluntariados
     } catch (error) {
       console.error("Error al actualizar:", error);
     }
   };
 
-  // Cancela la edición
   const cancelarEdicion = () => {
-    setEditIndex(null);
+    setEditIndex(null);  // Restablecer el estado editIndex cuando se cancela la edición
   };
 
   return (
     <div className="lista">
-      <h2>Publicaciones Registradas</h2>
+      <h2>Voluntariados Registrados</h2>
       <ul>
-        {publicaciones.map((item, index) => (
-          <li key={index} style={{ marginBottom: "20px" }}>
+        {voluntariados.map((item, index) => (
+          <li key={index}>
             {editIndex === index ? (
               <>
                 <input
                   name="nombre"
                   value={editForm.nombre}
                   onChange={handleEditChange}
-                  placeholder="Nombre"
                 />
-                <br />
                 <input
                   name="email"
                   value={editForm.email}
                   onChange={handleEditChange}
-                  placeholder="Email"
                 />
-                <br />
-                <textarea
-                  name="descripcion"
-                  value={editForm.descripcion}
+                <input
+                  name="actividad"
+                  value={editForm.actividad}
                   onChange={handleEditChange}
-                  placeholder="Descripción"
-                  rows={3}
-                  cols={30}
-                ></textarea>
-                <br />
+                />
                 <input
                   type="date"
                   name="fecha"
                   value={editForm.fecha}
                   onChange={handleEditChange}
                 />
-                <br />
-                <select
-                  name="categoria"
-                  value={editForm.categoria}
+                <input
+                  type="number"
+                  name="horas"
+                  value={editForm.horas}
                   onChange={handleEditChange}
-                >
-                  <option value="">Selecciona categoría</option>
-                  <option value="Tecnología">Tecnología</option>
-                  <option value="Educación">Educación</option>
-                  <option value="Salud">Salud</option>
-                </select>
-                <br />
-                <button onClick={guardarEdicion}>Guardar</button>{" "}
-                <button onClick={cancelarEdicion}>Cancelar</button>
+                />
+                <button className="guardar-btn" onClick={guardarEdicion}>
+                  Guardar
+                </button>
+                <button className="cancelar-btn" onClick={cancelarEdicion}>
+                  Cancelar
+                </button>
               </>
             ) : (
               <>
-                <strong>{item.nombre}</strong> - {item.categoria}
-                <br />
-                {item.descripcion}
-                <br />
-                <small>
-                  {item.email} - {item.fecha}
-                </small>
-                <br />
-                <br />
-                <button onClick={() => comenzarEdicion(index)}>Editar</button>{" "}
-                <button onClick={() => eliminarPublicacion(index)}>Eliminar</button>
+                <div className="actividad">{item.actividad}</div>
+                <div className="persona">{item.nombre} - {item.email}</div>
+                <div className="fecha-horas">
+                  {item.fecha} - {item.horas} horas
+                </div>
+                <div className="container-btn">
+                  <button className="edit-btn" onClick={() => comenzarEdicion(index)}>
+                    Editar
+                  </button>
+                  <button className="delete-btn" onClick={() => eliminarVoluntariado(index)}>
+                    Eliminar
+                  </button>
+                </div>
               </>
             )}
           </li>
