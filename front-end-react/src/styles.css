@@ -1,121 +1,146 @@
-/* Estilos específicos para el apartado de bienvenida */
-
-.welcome-container {
-  height: 100vh;
-  background: 
-    linear-gradient(rgba(0,70,130,0.6), rgba(0,70,130,0.6)),
-    url('/68e9bbed-6f67-4cc5-8270-856c5a87c644.png') no-repeat center center / cover;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  color: white;
-  font-weight: 600;
-  text-align: center;
-  padding: 2rem;
-  margin: 0;
-  text-shadow: 2px 2px 6px rgba(0,0,0,0.7);
-}
-
-.welcome-heading {
-  font-size: 1.8rem;
-  margin: 0;
-}
-
-.welcome-buttons {
-  margin-top: 2rem;
-  display: flex;
-  justify-content: center;
-  gap: 1.5rem;
-}
-
-.welcome-button {
-  background-color: #3b82f6;
-  color: white;
-  padding: 0.75rem 1.5rem;
-  border-radius: 10px;
-  text-decoration: none;
-  font-weight: 600;
-  font-size: 1rem;
-  box-shadow: 0 4px 10px rgba(59,130,246,0.3);
-  transition: background-color 0.3s ease, transform 0.2s ease;
-  display: inline-block;
-}
-
-.welcome-button:hover {
-  background-color: #2563eb;
-  transform: scale(1.05);
-}
-
-/* --- Aquí comienzan tus estilos globales --- */
-
+/* ----- ESTILOS GENERALES Y NAVBAR ----- */
 body {
-  font-family: "Segoe UI", sans-serif;
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+  background: #f9f9f9;
+  color: #2d3748;
+}
+
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: linear-gradient(to right, #00804d, #02a352);
+  padding: 1rem 2rem;
+  color: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.navbar-logo h1 {
+  font-size: 1.5rem;
+  margin: 0;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.navbar-links {
+  list-style: none;
+  display: flex;
+  gap: 2rem;
   margin: 0;
   padding: 0;
-  background: linear-gradient(to right, #e0f2fe, #bae6fd);
-  color: #1e3a8a;
-  min-height: 100vh;
-  animation: fadeIn 1s ease-in-out;
 }
 
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+.navbar-links li a {
+  color: rgb(52, 51, 51);
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 1rem;
+  position: relative;
+  padding: 0.5rem 0;
+  transition: color 0.3s ease;
 }
 
-h1,
-h2 {
-  text-align: center;
-  color: #1d4ed8;
+.navbar-links li a::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  background-color: rgb(255, 255, 255);
+  bottom: 0;
+  left: 0;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.3s ease;
+}
+
+.navbar-links li a:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+.navbar-links li a:hover {
+  color: #096f23;
+}
+
+
+.hero-img {
+  width: 50%;
+  max-height: 350px;
+  object-fit: cover;
+  border-radius: 10px;
   margin-bottom: 1rem;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
 }
 
-form,
-.lista {
+.inicio {
+  text-align: center;
+  padding: 2rem;
+}
+
+.modulos {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.modulo {
+  padding: 2rem;
+  background-color: #ffffff;
+  border: 2px solid #008020;
+  border-radius: 10px;
+  text-decoration: none;
+  color: #008022;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+.modulo:hover {
+  background-color: #008024;
+  color: white;
+}
+
+/* ----- FORMULARIO Y LISTA DE VOLUNTARIADOS ----- */
+
+h1, h2 {
+  text-align: center;
+  color: #2c3e50;
+  margin-bottom: 1rem;
+}
+
+form, .lista {
   max-width: 600px;
   margin: 2rem auto;
   padding: 2rem;
   background-color: #ffffff;
-  border-radius: 16px;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   display: flex;
   flex-direction: column;
-  animation: slideUp 0.5s ease;
-}
-
-@keyframes slideUp {
-  from { transform: translateY(30px); opacity: 0; }
-  to { transform: translateY(0); opacity: 1; }
 }
 
 label {
+  display: block;
   margin-bottom: 0.5rem;
-  color: #1e40af;
-  font-weight: 600;
+  color: #333;
+  font-weight: bold;
 }
 
-input,
-select,
-textarea,
-button {
+input, select, textarea, button {
+  display: block;
   width: 100%;
   margin-bottom: 1rem;
   padding: 0.75rem;
   font-size: 1rem;
-  border: 1px solid #cbd5e1;
-  border-radius: 10px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
   box-sizing: border-box;
-  transition: all 0.3s ease;
-  outline: none;
-}
-
-input:focus,
-select:focus,
-textarea:focus {
-  border-color: #38bdf8;
-  box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.3);
 }
 
 textarea {
@@ -124,21 +149,37 @@ textarea {
 }
 
 button {
-  background-color: #3b82f6;
+  background-color: #38bdf8;
   color: white;
-  font-weight: 600;
   border: none;
   cursor: pointer;
-  padding: 0.75rem 1.25rem;
-  font-size: 1rem;
-  border-radius: 10px;
-  transition: background-color 0.3s ease, transform 0.2s;
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  border-radius: 8px;
+  transition: background-color 0.3s ease;
+  margin-right: 1rem;
+  display: inline-block;
   width: auto;
 }
 
 button:hover {
-  background-color: #2563eb;
-  transform: translateY(-2px);
+  background-color: #0284c7;
+}
+
+button.guardar-btn {
+  background-color: #22c55e;
+}
+
+button.guardar-btn:hover {
+  background-color: #16a34a;
+}
+
+button.cancelar-btn {
+  background-color: #ef4444;
+}
+
+button.cancelar-btn:hover {
+  background-color: #dc2626;
 }
 
 .delete-btn {
@@ -149,76 +190,92 @@ button:hover {
   background-color: #dc2626;
 }
 
-.guardar-btn {
-  background-color: #22c55e;
-}
-
-.guardar-btn:hover {
-  background-color: #16a34a;
-}
-
-.cancelar-btn {
-  background-color: #f97316;
-}
-
-.cancelar-btn:hover {
-  background-color: #ea580c;
-}
-
 .container-btn {
   display: flex;
   justify-content: center;
+  align-items: center;
   gap: 1rem;
   margin-top: 1rem;
-  flex-wrap: wrap;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
 }
 
 li {
-  background-color: #f0f9ff;
+  background-color: #edf2f7;
   margin-bottom: 1rem;
-  padding: 1.5rem;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  padding: 1.25rem;
+  border-radius: 8px;
+  transition: transform 0.3s ease;
 }
 
 li:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  transform: translateY(-5px);
 }
 
 li .actividad {
   font-size: 1.25rem;
-  font-weight: 700;
-  color: #1e3a8a;
+  font-weight: bold;
+  color: #2c3e50;
 }
 
 li .persona {
   font-size: 1rem;
-  color: #334155;
+  font-weight: normal;
+  color: #555;
 }
 
 li .fecha-horas {
   font-size: 0.875rem;
-  color: #64748b;
+  color: #777;
+}
+.footer {
+  background: linear-gradient(to right, #00804d, #02a352);
+  color: white;
+  text-align: center;
+  padding: 2rem 1rem;
+  margin-top: 3rem;
+  box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.1);
 }
 
+.footer-content p {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.footer-links {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.footer-links a {
+  color: #ffffff;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.footer-links a:hover {
+  color: #bde0fe;
+}
+
+/* Responsive */
 @media (max-width: 768px) {
-  form,
-  .lista {
+  form, .lista {
     width: 90%;
     padding: 1.5rem;
   }
 
-  input,
-  select,
-  textarea,
-  button {
+  input, select, textarea, button {
     font-size: 0.95rem;
   }
 
-  h1,
-  h2 {
+  h1, h2 {
     font-size: 1.5rem;
   }
 }

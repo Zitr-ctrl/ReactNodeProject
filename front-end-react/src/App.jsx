@@ -1,58 +1,51 @@
-import React from "react";
-import { Link } from "react-router-dom";
-
-const containerStyle = {
-  height: "100vh",
-  background: `linear-gradient(rgba(0,70,130,0.6), rgba(0,70,130,0.6)), url('/68e9bbed-6f67-4cc5-8270-856c5a87c644.png') no-repeat center center / cover`,
-  display: "flex",
-  flexDirection: "column",
-  justifyContent: "center",
-  alignItems: "center",
-  color: "white",
-  fontWeight: "600",
-  textAlign: "center",
-  padding: "2rem",
-  marginTop: 0,
-  textShadow: "2px 2px 6px rgba(0,0,0,0.7)",
-};
-
-const headingStyle = {
-  fontSize: "1.8rem",
-};
-
-const buttonsContainerStyle = {
-  marginTop: "2rem",
-  display: "flex",
-  justifyContent: "center",
-  gap: "1.5rem",
-};
-
-const buttonStyle = {
-  backgroundColor: "#3b82f6",
-  color: "white",
-  padding: "0.75rem 1.5rem",
-  borderRadius: "10px",
-  textDecoration: "none",
-  fontWeight: "600",
-  fontSize: "1rem",
-  boxShadow: "0 4px 10px rgba(59,130,246,0.3)",
-  transition: "background-color 0.3s ease, transform 0.2s ease",
-  display: "inline-block",
-};
+import { Routes, Route, Link } from 'react-router-dom';
+import Registro from './pages/Registro';
+import Lista from './pages/Lista';
+import './styles.css';
+import imagenVoluntariado from './imagenes/voluntariado.jpg';
 
 function App() {
   return (
-    <div style={containerStyle}>
-      <h1 style={headingStyle}>Bienvenido a la Plataforma de Publicaciones</h1>
-      <div style={buttonsContainerStyle}>
-        <Link to="/registro" style={buttonStyle}>
-          Ir a Registro
-        </Link>
-        <Link to="/lista" style={buttonStyle}>
-          Ver Publicaciones
-        </Link>
-      </div>
-    </div>
+    <>
+      <nav className="navbar">
+        <div className="navbar-logo">
+          <h1> Voluntariados UNEMI</h1>
+        </div>
+        <ul className="navbar-links">
+          <li><Link to="/">Inicio</Link></li>
+          <li><Link to="/registro">Formulario</Link></li>
+          <li><Link to="/lista">Publicaciones</Link></li>
+        </ul>
+      </nav>
+
+      <h1>Bienvenidos a Voluntariados UNEMI</h1>
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <main className="inicio">
+               <img src={imagenVoluntariado} alt="Voluntariado" className="hero-img" />
+              <div className="modulos">
+                <Link to="/registro" className="modulo">Registro de Voluntariado</Link>
+                <Link to="/lista" className="modulo">Ver Publicaciones</Link>
+              </div>
+            </main>
+          }
+        />
+        <Route path="/registro" element={<Registro />} />
+        <Route path="/lista" element={<Lista />} />
+      </Routes>
+      <footer className="footer">
+        <div className="footer-content">
+          <p>© {new Date().getFullYear()} Voluntariados UNEMI — Todos los derechos reservados</p>
+          <div className="footer-links">
+            <a href="https://unemi.edu.ec" target="_blank" rel="noreferrer">Sitio Oficial</a>
+            <a href="mailto:contacto@unemi.edu.ec">Contáctanos</a>
+          </div>
+        </div>
+      </footer>
+
+    </>
   );
 }
 

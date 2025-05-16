@@ -3,15 +3,8 @@
     "nombre": "David Josue Ortíz Ochoa",
     "email": "ajosueramos@gmail.com",
     "actividad": "Recogida de basura en el parque",
-    "fecha": "2025-05-12",
+    "fecha": "2025-05-24",
     "horas": 4
-  },
-  {
-    "nombre": "Jennifer Lopez",
-    "email": "jenniferlopez@gmail.com",
-    "actividad": "Taller de educación para niños",
-    "fecha": "2025-05-12",
-    "horas": 3
   },
   {
     "nombre": "Erick Ortíz",
@@ -19,5 +12,12 @@
     "actividad": "Reforestación en la montaña",
     "fecha": "2025-05-14",
     "horas": 5
+  },
+  {
+    "nombre": "Ariana Grande",
+    "actividad": "Bailar",
+    "email": "arianagrande@gmail.com",
+    "fecha": "2025-05-15",
+    "horas": "1"
   }
 ]

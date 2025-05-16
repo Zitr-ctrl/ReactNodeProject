@@ -1,54 +1,81 @@
-import { useState } from "react";
-import axios from "axios";
+import { useState } from 'react';
+import axios from 'axios';
 
-function Registro() {
-  const [form, setForm] = useState({
-    nombre: "",
-    email: "",
-    actividad: "",
-    fecha: "",
-    horas: 0,
-  });
-
-  const handleChange = (e) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
-  };
+export default function Registro() {
+  const [nombre, setNombre] = useState('');
+  const [email, setEmail] = useState('');
+  const [actividad, setActividad] = useState('');
+  const [fecha, setFecha] = useState('');
+  const [horas, setHoras] = useState('');
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (
-      form.nombre &&
-      form.email &&
-      form.actividad &&
-      form.fecha &&
-      form.horas
-    ) {
-      await axios.post("http://localhost:3001/registros", form);
-      alert("Voluntariado registrado con éxito");
-    } else {
-      alert("Por favor completa todos los campos");
+
+    const nuevoRegistro = { nombre, actividad, email, fecha, horas };
+
+    try {
+      await axios.post('http://localhost:3001/registros', nuevoRegistro);
+      alert('Registro guardado');
+      setNombre('');
+      setEmail('');
+      setActividad('');
+      setFecha('');
+      setHoras('');
+    } catch (error) {
+      alert('Error al guardar');
     }
   };
 
   return (
-    <form onSubmit={handleSubmit} className="registro-form">
-      <input name="nombre" placeholder="Nombre" onChange={handleChange} />
-      <input name="email" placeholder="Email" onChange={handleChange} />
-      <input
-        name="actividad"
-        placeholder="Actividad de voluntariado"
-        onChange={handleChange}
-      />
-      <input type="date" name="fecha" onChange={handleChange} />
-      <input
-        type="number"
-        name="horas"
-        placeholder="Horas dedicadas"
-        onChange={handleChange}
-      />
-      <button type="submit">Registrar Voluntariado</button>
-    </form>
+    <div>
+      <h2>Formulario de Voluntariado</h2>
+      <form onSubmit={handleSubmit}>
+        <label>Nombre del voluntario:</label>
+        <input
+          type="text"
+          value={nombre}
+          onChange={(e) => setNombre(e.target.value)}
+          required
+        />
+
+        <label>Correo electrónico:</label>
+        <input
+          type="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          required
+        />
+
+
+        <label>Actividad:</label>
+        <input
+          type="text"
+          value={actividad}
+          onChange={(e) => setActividad(e.target.value)}
+          required
+        />
+
+        <label>Fecha:</label>
+        <input
+          type="date"
+          value={fecha}
+          onChange={(e) => setFecha(e.target.value)}
+          required
+        />
+
+        <label>Horas:</label>
+        <input
+          type="number"
+          value={horas}
+          onChange={(e) => setHoras(e.target.value)}
+          required
+        />
+
+        <div className="container-btn">
+          <button type="submit" className="guardar-btn">Guardar</button>
+          <button type="reset" className="cancelar-btn">Cancelar</button>
+        </div>
+      </form>
+    </div>
   );
 }
-
-export default Registro;
